@@ -6,12 +6,17 @@
       <el-table :data="tableData" style="width: 100%;">
         <el-table-column prop="ranking" label="排名"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
-        <el-table-column label="奖金（税前）" class="">
-          <template slot-scope="scope">
-            {{scope.$reward}}元
-          </template>
-        </el-table-column>
+        <el-table-column prop="reward" label="奖金（税前）" class=""></el-table-column>
       </el-table>
+      <el-pagination
+        style="margin-top: 16px;"
+        background
+        @current-change="handleCurrentChange"
+        :current-page.sync="currentPage"
+        :page-size="10"
+        layout="prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
     </main>
   </section>
 </template>
@@ -22,7 +27,9 @@
   export default {
     data () {
       return {
-        tableData: []
+        tableData: [],
+        currentPage: 1,
+        total: 0
       }
     },
     mounted () {
@@ -41,6 +48,7 @@
           const res = json.data
           if (res.code === 0) {
             this.tableData = res.response.list
+            this.total = res.response.total
           } else {
             this.$message({
               type: 'error',
@@ -49,7 +57,10 @@
           }
         })
       },
-      release () {}
+      release () {},
+      handleCurrentChange (currentPage) {
+        this._getList(currentPage, 10)
+      }
     },
     components: {
       MyHeader

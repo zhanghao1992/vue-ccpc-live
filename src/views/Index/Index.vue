@@ -122,7 +122,7 @@
         })
       },
       goPublish (row) {
-        this.$router.push({path: `/final/${row.matchId}`})
+        this.$router.push({path: `/final/:${row.matchId}`})
       }
     },
     components: {
