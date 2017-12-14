@@ -6,7 +6,11 @@
       <el-table :data="tableData" style="width: 100%;">
         <el-table-column prop="ranking" label="排名"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
-        <el-table-column prop="reward" label="奖金（税前）" class=""></el-table-column>
+        <el-table-column label="奖金（税前）" class="">
+          <template slot-scope="scope">
+            {{scope.row.reward}}元
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
         style="margin-top: 16px;"

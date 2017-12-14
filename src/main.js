@@ -8,10 +8,10 @@ import axios from 'axios'
 import qs from 'qs'
 import VueJsonp from 'vue-jsonp'
 import VueSession from 'vue-session'
-import Vuex from 'vuex'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/store'
 import 'jquery'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.use(Element)
 
@@ -60,7 +60,7 @@ axios.interceptors.request.use(config => {
 Vue.prototype.$http = axios
 Vue.use(VueJsonp)
 Vue.use(VueSession)
-Vue.use(Vuex)
+Vue.use(VueClipboard)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

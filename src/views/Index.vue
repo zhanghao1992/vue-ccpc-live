@@ -24,17 +24,17 @@
             <el-button
               size="mini"
               type="primary"
-              @click="goPublish(scope.row)">轮次排名
+              @click="goLunList(scope.row)">轮次排名
             </el-button>
             <el-button
               size="mini"
               type="primary"
-              @click="goPublish(scope.row)">个人排名
+              @click="goSingleList(scope.row)">个人排名
             </el-button>
             <el-button
               size="mini"
               type="primary"
-              @click="goPublish(scope.row)">总排名
+              @click="goFinalList(scope.row)">总排名
             </el-button>
             <el-button
               size="mini"
@@ -98,7 +98,7 @@
               })
             }
           })
-        })
+        }).catch(() => {})
       },
       deleteMatchId (row) {
         this.$http.post('/node/match/deleteMatch', {
@@ -121,8 +121,17 @@
           }
         })
       },
+      goLunList (row) {
+        this.$router.push({path: `/lun/${row.matchId}`})
+      },
+      goSingleList (row) {
+        this.$router.push({path: `/single/${row.matchId}`})
+      },
+      goFinalList (row) {
+        this.$router.push({path: `/final/${row.matchId}`})
+      },
       goPublish (row) {
-        this.$router.push({path: `/final/:${row.matchId}`})
+        this.$router.push({path: `/publish/${row.matchId}/1`})
       }
     },
     components: {

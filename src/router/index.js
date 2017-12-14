@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueSession from 'vue-session'
-import Login from '@/views/Login/Login'
-import Index from '@/views/Index/Index'
-import Final from '@/views/Final/Final'
+import Login from '@/views/Login'
+import Index from '@/views/Index'
+import Lun from '@/views/Lun'
+import Single from '@/views/Single'
+import Final from '@/views/Final'
+import Publish from '@/views/Publish.vue'
 import store from '../store/store'
 
 Vue.use(Router)
@@ -23,8 +26,29 @@ const router = new Router({
       }
     },
     {
+      path: '/lun/:matchId',
+      component: Lun,
+      meta: {
+        // requireAuth: true
+      }
+    },
+    {
+      path: '/single/:matchId',
+      component: Single,
+      meta: {
+        // requireAuth: true
+      }
+    },
+    {
       path: '/final/:matchId',
       component: Final,
+      meta: {
+        // requireAuth: true
+      }
+    },
+    {
+      path: '/publish/:matchId/:listType',
+      component: Publish,
       meta: {
         // requireAuth: true
       }

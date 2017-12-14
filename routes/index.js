@@ -44,4 +44,38 @@ router.get('/player/getMatchPlayerRank', function (req, res) {
   })
 })
 
+// 获取最新轮次
+router.get('/player/getLatestRound', function (req, res) {
+  vService.post(req, res, {path: '/player/getLatestRound'}, function (json) {
+    res.send(json)
+  })
+})
+
+// 获取轮次排名
+router.get('/player/getMatchShiftRank', function (req, res) {
+  vService.post(req, res, {path: '/player/getMatchShiftRank'}, function (json) {
+    res.send(json)
+  })
+})
+
+// 修改玩家轮次排名分数
+router.post('/player/updatePlayerScore', function (req, res) {
+  vService.post(req, res, {path: '/player/updatePlayerScore'}, function (json) {
+    res.send(json)
+  })
+})
+
+// 获取单人轮次排名
+router.get('/player/getMatchSingleRoundRank', function (req, res) {
+  vService.post(req, res, {path: '/player/getMatchSingleRoundRank'}, function (json) {
+    res.send(json)
+  })
+})
+
+// 获取赛事发布列表
+router.get('/release/getReleaseList', function (req, res) {
+  vService.post(req, res, {path: '/release/getReleaseList'}, function (json) {
+    res.send(json)
+  })
+})
 module.exports = router
