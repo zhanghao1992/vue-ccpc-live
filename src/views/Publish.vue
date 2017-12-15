@@ -28,7 +28,7 @@
         background
         @current-change="handleCurrentChange"
         :current-page.sync="currentPage"
-        :page-size="10"
+        :page-size="1"
         layout="prev, pager, next, jumper"
         :total="total">
       </el-pagination>
@@ -48,10 +48,12 @@
         currentPage: 1,
         total: 0,
         listType: this.$route.params.listType,
-        message: ''
+        message: '',
+        host: null
       }
     },
     mounted () {
+      this.host = window.location.host
       getLatestRound(this.$route.params.matchId).then((res) => {
         this.latestRound = res.data.response
         this._getList(this.currentPage, 10)
@@ -81,8 +83,8 @@
         })
       },
       release () {},
-      handleCurrentChange (currentPage) {
-        this.currentPage = currentPage
+      handleCurrentChange (page) {
+        this.currentPage = page
         this._getList(this.currentPage, 10)
       },
       changeScore (row) {
@@ -112,7 +114,7 @@
         }).catch(() => {})
       },
       doCopy (row) {
-        this.message = `${window.location.host}/#${row.url}`
+        this.message = `${this.host}/#${row.url}`
         var _this = this
         this.$copyText(this.message).then(() => {
           _this.$message({
@@ -126,10 +128,11 @@
         let hash = window.location.hash
         const location = hash.lastIndexOf('/')
         window.location.hash = `${hash.substr(0, location)}/${key}`
+        this.currentPage = 1
         this._getList(this.currentPage, 10)
       },
       formatUrl (url) {
-        return `${window.location.host}/#${url}`
+        return `${this.host}/#${url}`
       }
     },
     components: {

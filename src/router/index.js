@@ -7,6 +7,7 @@ import Lun from '@/views/Lun'
 import Single from '@/views/Single'
 import Final from '@/views/Final'
 import Publish from '@/views/Publish.vue'
+import Chat from '@/views/Chat.vue'
 import store from '../store/store'
 
 Vue.use(Router)
@@ -52,6 +53,10 @@ const router = new Router({
       meta: {
         // requireAuth: true
       }
+    },
+    {
+      path: '/chat',
+      component: Chat
     }
   ]
 })

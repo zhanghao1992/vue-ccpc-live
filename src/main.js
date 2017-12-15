@@ -8,6 +8,7 @@ import axios from 'axios'
 import qs from 'qs'
 import VueJsonp from 'vue-jsonp'
 import VueSession from 'vue-session'
+import VueSocketIO from 'vue-socket-io'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/store'
 import 'jquery'
@@ -62,6 +63,9 @@ Vue.use(VueJsonp)
 Vue.use(VueSession)
 Vue.use(VueClipboard)
 Vue.config.productionTip = false
+Vue.use(VueSocketIO, 'ws://localhost:3000', {
+  reconnection: false
+})
 
 /* eslint-disable no-new */
 new Vue({
